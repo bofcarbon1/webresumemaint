@@ -1,0 +1,60 @@
+<span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}
+</span>
+<span *ngIf="successMessage" class="alert alert-success">{{successMessage}}
+<a [routerLink]="['/project-home']" [queryParams]="{}" routerLinkActive="active"> -- Return to Projects</a>
+</span>
+<br>
+<div class="row" style="background-color:lightgray" >
+    <div class="col-md-12">
+<form class="form col-md-4" [hidden]="submitted">
+  <div class="form-group" [formGroup]="updProjForm">
+    <label class="control-label" for="nameInput">Project name</label>
+    <div [ngClass]="{'has-error':!updProjForm.controls['name'].valid
+      && updProjForm.controls['name'].touched}">
+      <input id="nameInput" class="form-control" #na type="text" 
+      formControlName="name" (change)="modifiedName(na.value)">
+    </div>
+    <div *ngIf="updProjForm.controls['name'].hasError('required')
+     && updProjForm.controls['name'].touched" class="alert alert-danger">
+    You must enter a project name.  
+    </div>
+    <label class="control-label" for="yearInput">Year</label>
+    <div [ngClass]="{'has-error':!updProjForm.controls['year'].valid
+      && updProjForm.controls['year'].touched}">
+      <input id="yearInput" class="form-control" #y type="text"  
+      formControlName="year" (change)="modifiedYear(y.value)"
+      [formControl]="updProjForm.controls['year']">
+    </div>
+    <div *ngIf="updProjForm.controls['year'].hasError('invalidYear')
+     && updProjForm.controls['year'].touched" class="alert alert-danger">
+    You must enter a valid project year (2008 thru 2017).  
+    </div>
+    <label class="control-label" for="noteInput">Note</label>
+    <div [ngClass]="{'has-error':!updProjForm.controls['note'].valid
+      && updProjForm.controls['note'].touched}">
+      <input id="noteInput" class="form-control" #n type="text" 
+      formControlName="note" (change)="modifiedNote(n.value)">
+    </div>
+    <div *ngIf="updProjForm.controls['note'].hasError('required')
+     && updProjForm.controls['note'].touched" class="alert alert-danger">
+    You must enter a project note.  
+    </div>
+    <label class="control-label" for="typeInput">Project Type</label>
+    <div>
+      <select class="form-control" #ty
+      (change)="modifiedType(ty.value)">
+        <option>{{projectPreselect}}</option>
+          <option *ngFor="let t of types">{{t}}</option>
+      </select>
+      <br/>
+      <br/>
+    </div>
+  </div>
+</form>
+<br>
+<div class="container" [hidden]="submitted">
+   <button class="btn btn-primary" (click)="updProject()" 
+   [disabled]="!updProjForm.valid">Submit</button>
+</div>
+    </div>
+</div>

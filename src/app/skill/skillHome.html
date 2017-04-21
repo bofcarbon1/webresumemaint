@@ -1,0 +1,16 @@
+<div class="row" style="background-color:lightgray">
+    <div class="col-md-12">
+<h3>Skills</h3>
+<ul>
+  <li *ngFor = "let skill of allskills">
+    <a [routerLink]="['skill-upd', {id : skill.id} ]" routerLinkActive="active">
+       {{skill.skillname}}  </a>
+      <span> -- {{skill.skilltype}}</span>
+  </li>
+</ul>
+<br/>
+<a [routerLink]="['skill-upd', {id : 0} ]" routerLinkActive="active">Add skill</a>
+<br/>
+<br/>
+    </div>
+</div>

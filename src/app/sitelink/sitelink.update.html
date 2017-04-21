@@ -1,0 +1,39 @@
+<span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}
+</span>
+<span *ngIf="successMessage" class="alert alert-success">{{successMessage}}
+<a [routerLink]="['/sitelink-home']" [queryParams]="{}" routerLinkActive="active"> -- Return to Sitelinks</a>
+</span>
+<br>
+<div class="row" style="background-color:lightgray" >
+    <div class="col-md-12">
+<form class="form col-md-4" [hidden]="submitted">
+  <div class="form-group" [formGroup]="updSitelinkForm">
+    <label class="control-label" for="nameInput">Site name</label>
+    <div [ngClass]="{'has-error':!updSitelinkForm.controls['sitename'].valid
+      && updSitelinkForm.controls['sitename'].touched}">
+      <input id="nameInput" class="form-control" #na type="text" 
+      formControlName="sitename" (change)="modifiedSiteName(na.value)">
+    </div>
+    <div *ngIf="updSitelinkForm.controls['sitename'].hasError('required')
+     && updSitelinkForm.controls['sitename'].touched" class="alert alert-danger">
+    You must enter a site name.  
+    </div>
+    <label class="control-label" for="linkInput">Site link</label>
+    <div [ngClass]="{'has-error':!updSitelinkForm.controls['sitelink'].valid
+      && updSitelinkForm.controls['sitelink'].touched}">
+      <input id="linkInput" class="form-control" #sl type="text" 
+      formControlName="sitelink" (change)="modifiedSiteLink(sl.value)">
+    </div>
+    <div *ngIf="updSitelinkForm.controls['sitelink'].hasError('required')
+     && updSitelinkForm.controls['sitelink'].touched" class="alert alert-danger">
+    You must enter a site link.  
+    </div>
+  </div>
+</form>
+<br>
+<div class="container" [hidden]="submitted">
+   <button class="btn btn-primary" (click)="updSitelink()" 
+   [disabled]="!updSitelinkForm.valid">Submit</button>
+</div>
+    </div>
+</div>

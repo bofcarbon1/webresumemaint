@@ -1,0 +1,16 @@
+<div class="row" style="background-color:lightgray">
+    <div class="col-md-12">
+<h3>Site Links</h3>
+<ul>
+  <li *ngFor = "let sitelink of sitelinks">
+    <a [routerLink]="['sitelink-upd', {id : sitelink.id} ]" routerLinkActive="active">
+       {{sitelink.sitename}}  </a>
+      <span> -- {{sitelink.sitelink}}</span>
+  </li>
+</ul>
+<br/>
+<a [routerLink]="['sitelink-upd', {id : 0} ]" routerLinkActive="active">Add sitelink</a>
+<br/>
+<br/>
+    </div>
+</div>

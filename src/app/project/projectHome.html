@@ -1,0 +1,16 @@
+<div class="row" style="background-color:lightgray" >
+    <div class="col-md-12">
+<h3>Projects</h3>
+<ul>
+  <li *ngFor = "let project of allprojects">
+    <a [routerLink]="['project-upd', {id : project.id} ]" routerLinkActive="active">
+       {{project.name}}  </a>
+      <span> -- {{project.year}} -- {{project.note}} -- {{project.type}}</span>
+  </li>
+</ul>
+<br/>
+<a [routerLink]="['project-upd', {id : 0} ]" routerLinkActive="active">Add project</a>
+<br/>
+<br/>
+    </div>
+</div>

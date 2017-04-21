@@ -1,0 +1,39 @@
+<span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}
+</span>
+<span *ngIf="successMessage" class="alert alert-success">{{successMessage}}
+<a [routerLink]="['/skill-home']" [queryParams]="{}" routerLinkActive="active"> -- Return to Skills</a>
+</span>
+<br>
+<div class="row" style="background-color:lightgray" >
+    <div class="col-md-12">
+<form class="form col-md-4" [hidden]="submitted">
+  <div class="form-group" [formGroup]="updSkillForm">
+    <label class="control-label" for="nameInput">Skill name</label>
+    <div [ngClass]="{'has-error':!updSkillForm.controls['skillname'].valid
+      && updSkillForm.controls['skillname'].touched}">
+      <input id="nameInput" class="form-control" #na type="text" 
+      formControlName="skillname" (change)="modifiedSkillName(na.value)">
+    </div>
+    <div *ngIf="updSkillForm.controls['skillname'].hasError('required')
+     && updSkillForm.controls['skillname'].touched" class="alert alert-danger">
+    You must enter a skill name.  
+    </div>
+    <label class="control-label" for="typeInput">Skill Type</label>
+    <div>
+      <select class="form-control" #ty
+      (change)="modifiedSkillType(ty.value)">
+        <option>{{skillPreselect}}</option>
+          <option *ngFor="let t of types">{{t}}</option>
+      </select>
+      <br/>
+      <br/>
+    </div>
+  </div>
+</form>
+<br>
+<div class="container" [hidden]="submitted">
+   <button class="btn btn-primary" (click)="updSkill()" 
+   [disabled]="!updSkillForm.valid">Submit</button>
+</div>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+
+<div *ngIf="checkisAuthenticated()" class="row"> 
+<p><strong>Enjoy your web site maintenance experience!</strong></p>
+   <div class="col-md-12">
+       <nav class="navbar navbar-default" style="background-color:#b3ffff">
+          <ul class="nav navbar-nav" style="color:black; font-weight:bold"> 
+            <li><a routerLink="project-home" routerLinkActive="active">Projects</a></li>
+            <li><a routerLink="skill-home" routerLinkActive="active">Skills</a></li>
+            <li><a routerLink="sitelink-home" routerLinkActive="active">Sitelinks</a></li>
+          </ul>
+       </nav>
+       <router-outlet></router-outlet>
+    </div>
+</div>
+<div *ngIf="!checkisAuthenticated()" class="row"> 
+<p><strong>There appears to be an issue with your credentials. Are you logged into 
+with the right account?</strong></p>
+</div>
